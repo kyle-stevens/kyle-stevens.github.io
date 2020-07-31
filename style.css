@@ -131,12 +131,15 @@ li a:hover{
 }
 .body p{
         padding: 10px;
+	/*padding-top: 15px;*/
+
 
 }
 
 .portrait{
         display: inline-block;
         float: left;
+	
 }
 
 body {
