@@ -89,27 +89,28 @@ h2{
 
 }
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: black;
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  overflow: hidden;
+	  background-color: black;
+	  font-size: 24px;
 }
 li:first-child{
         float: left;
         border-left: 1px none white;
 }
 li {
-  float: left;
-  border-left: 1px solid white;
+  	float: left;
+  	border-left: 1px solid white;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
+	  display: block;
+	  color: white;
+	  text-align: center;
+	  padding: 16px;
+	  text-decoration: none;
 }
 
 li a:hover{
@@ -117,23 +118,50 @@ li a:hover{
 }
 
 
+.content{
+	margin-left: 10%;
+        margin-right: 10%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 80%;
+        background-color: black;
+        border-bottom: 1px solid white;
+	display: flex;
 
+}
 
 .body{
-        margin-left: 10%;
-        margin-right: 10%;
-        width: 80%;
+        margin-left: 0;
+        margin-right: 0;
+        width: 75%;
         background-color: black;
         color: white;
         text-align: justify;
         float: left;
+	border-right: 1px solid white;
 
 }
 .body p{
-        padding: 10px;
-	/*padding-top: 15px;*/
+        padding: 15px;
+	font-size: 18px;
+}
 
+.sidebar{
+	float: right;
+	margin-left: 0;
+        margin-right: 0;
+        width: 25%;
+        background-color: black;
+        color: white;
+        text-align: justify;
+	height: 100%;
+	
+	text-align: justify;
+}
 
+.sidebar p{
+        padding: 15px;
+	font-size: 18px;
 }
 
 .contact{
