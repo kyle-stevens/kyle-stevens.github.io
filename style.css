@@ -155,7 +155,7 @@ li a:hover{
         color: white;
         text-align: justify;
 	height: 100%;
-	
+
 	text-align: justify;
 }
 
@@ -189,7 +189,9 @@ li a:hover{
 
 }
 
-
+.contact a:hover{
+        color: grey;
+}
 
 
 .portrait{
