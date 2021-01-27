@@ -5,7 +5,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Keep It Simple</title>
+    <title>Blog Listing - Keep It Simple</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -49,22 +49,22 @@
     <header class="s-header">
 
         <div class="row">
-
             <div class="s-header__content column">
-                <h1 class="s-header__logotext">
-                    <a href="index.html" title="">Keep It Simple.</a>
-                </h1>
-                <p class="s-header__tagline">Put your awesome tagline here.</p>
+                <div class="s-header__brand">
+                    <h1 class="s-header__logotext">
+                        <a href="index.html" title="">Keep It Simple.</a>
+                    </h1>
+                    <p class="s-header__tagline">Put your awesome tagline here.</p>
+                </div>
             </div>
-
         </div> <!-- end row -->
 
-       <nav class="s-header__nav-wrap">
+        <nav class="s-header__nav-wrap"> 
 
            <div class="row">
 
                 <ul class="s-header__nav">
-                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li class="has-children"><a href="#0">Dropdown</a>
                         <ul>
                             <li><a href="#0">Submenu 01</a></li>
@@ -74,16 +74,16 @@
                     </li>
                     <li><a href="demo.html">Demo</a></li>	
                     <li><a href="archives.html">Archives</a></li>
-                    <li class="has-children"><a href="#0">Blog</a>
+                    <li class="has-children current"><a href="#0">Blog</a>
                         <ul>
                             <li><a href="blog.html">Blog Entries</a></li>
                             <li><a href="single.html">Single Blog</a></li>
                         </ul>
                     </li>
                     <li><a href="page.html">Page</a></li>
-                </ul> <!-- end #nav -->
+                </ul> 
 
-           </div> 
+           </div>
 
         </nav> <!-- end #nav-wrap -->
 
@@ -112,7 +112,7 @@
                         <div class="entry__meta">
                             <ul>
                                 <li>July 12, 2019</li>
-                                <li><a href="#" title="" rel="category tag">Ghost</a></li>
+                                <li><a href="#0" title="" rel="category tag">Ghost</a></li>
                                 <li>John Doe</li>
                             </ul>
                         </div>
@@ -137,15 +137,15 @@
                     <header class="entry__header">
 
                         <h2 class="entry__title h1">
-                            <a href="single.html" title="">We Need Better Typography.</a>
+                            <a href="single.html" title="">We Need Better Web Typography.</a>
                         </h2>
                     
                         <div class="entry__meta">
                             <ul>
                                 <li>July 11, 2019</li>
                                 <li>
-                                    <a href="#" title="" rel="category tag">Wordpress</a>,
-                                    <a href="#" title="" rel="category tag">Ghost</a>
+                                    <a href="#0" title="" rel="category tag">Wordpress</a>,
+                                    <a href="#0" title="" rel="category tag">Ghost</a>
                                 </li>
                                 <li>Jane Doe</li>
                             </ul>
@@ -178,8 +178,8 @@
                             <ul>
                                 <li>July 10, 2019</li>
                                 <li>
-                                    <a href="#" title="" rel="category tag">Joomla</a>,
-                                    <a href="#" title="" rel="category tag">Drupal</a>
+                                    <a href="#0" title="" rel="category tag">Joomla</a>,
+                                    <a href="#0" title="" rel="category tag">Drupal</a>
                                 </li>
                                 <li>Naruto Uzumaki</li>
                             </ul>
@@ -212,7 +212,7 @@
                             <ul>
                                 <li>July 09, 2019</li>
                                 <li>
-                                    <a href="#" title="" rel="category tag">Ghost</a>
+                                    <a href="#0" title="" rel="category tag">Ghost</a>
                                 </li>
                                 <li>Naruto Uzumaki</li>
                             </ul>
@@ -235,6 +235,12 @@
 
                 </article> <!-- end entry -->
 
+                <!-- page nav -->
+                <div class="post-list-nav">
+                    <a rel="prev" href="#0">Prev</a>
+                    <a rel="next" href="#0">Next</a>
+                </div>
+
            </div> <!-- end main -->
 
 
@@ -242,7 +248,7 @@
 
                <div class="widget widget--search">
                   <h3 class="h6">Search</h3> 
-                  <form action="#">
+                  <form action="#0">
                      <input type="text" value="Search here..." onblur="if(this.value == '') { this.value = 'Search here...'; }" onfocus="if (this.value == 'Search here...') { this.value = ''; }" class="text-search">
                      <input type="submit" value="" class="submit-search">
                   </form>
@@ -288,9 +294,9 @@
                     <h3 class="h6">Popular Post.</h3>
 
                     <ul class="link-list">
-                        <li><a href="#">Sint cillum consectetur voluptate.</a></li>
-                        <li><a href="#">Lorem ipsum Ullamco commodo.</a></li>
-                        <li><a href="#">Fugiat minim eiusmod do.</a></li>
+                        <li><a href="#0">Sint cillum consectetur voluptate.</a></li>
+                        <li><a href="#0">Lorem ipsum Ullamco commodo.</a></li>
+                        <li><a href="#0">Fugiat minim eiusmod do.</a></li>
                     </ul>
                 </div>
                
@@ -383,10 +389,10 @@
             </a>
         </div> <!-- end ss-go-top -->
 
-    </footer> <!-- end Footer-->
+   </footer> <!-- end Footer-->
 
 
-    <!-- Java Script
+   <!-- Java Script
     ================================================== -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/main.js"></script>
