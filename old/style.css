@@ -56,6 +56,8 @@ header{
         background-color: black;
         height: 200px;
         border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
 }
 
 a{
@@ -78,6 +80,14 @@ h2{
         font-family: "Times New Roman", Times, serif;
 }
 
+h4{
+        font-size: 16px;
+        padding: 10px;
+        padding-left: 20px;
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+}
+
 .nav{
         margin-left: 10%;
         margin-right: 10%;
@@ -86,6 +96,8 @@ h2{
         width: 80%;
         background-color: black;
         border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
 
 }
 ul {
@@ -126,6 +138,8 @@ li a:hover{
         width: 80%;
         background-color: black;
         border-bottom: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
 	display: flex;
 
 }
@@ -201,5 +215,7 @@ li a:hover{
 }
 
 body {
-        background-color: #555;
+	background-image: linear-gradient(black 66%, green);
+
+
 }
