@@ -53,22 +53,22 @@ header{
         margin-left: 10%;
         margin-right: 10%;
         width: 80%;
-        background-color: black;
+        background-color: white;
         height: 200px;
-        border-bottom: 1px solid white;
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+        border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 }
 
 a{
         text-decoration: none;
-        color: white;
+        color: black;
 }
 
 h1{
         font-size: 64px;
         padding: 20px;
-        color: white;
+        color: black;
         font-family: "Times New Roman", Times, serif;
 }
 
@@ -76,7 +76,7 @@ h2{
         font-size: 32px;
         padding: 10px;
         padding-left: 20px;
-        color: white;
+        color: black;
         font-family: "Times New Roman", Times, serif;
 }
 
@@ -84,12 +84,12 @@ h4{
         font-size: 16px;
         padding: 10px;
         padding-left: 20px;
-        color: white;
+        color: black;
         font-family: "Times New Roman", Times, serif;
 }
 
 .post{
-	border: 1px dashed white;
+	border: 1px dashed black;
 	margin-left: 1%;
 	margin-right: 1%;
 
@@ -101,10 +101,10 @@ h4{
         padding-top: 10px;
         padding-bottom: 10px;
         width: 80%;
-        background-color: black;
-        border-bottom: 1px solid white;
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+        background-color: white;
+        border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 
 }
 ul {
@@ -112,22 +112,22 @@ ul {
 	  margin: 0;
 	  padding: 0;
 	  overflow: hidden;
-	  background-color: black;
+	  background-color: white;
 	  font-size: 24px;
 }
 
 li:first-child{
         float: left;
-        border-left: 1px none white;
+        border-left: 1px none black;
 }
 li {
   	float: left;
-  	border-left: 1px solid white;
+  	border-left: 1px solid black;
 }
 
 li a {
 	  display: block;
-	  color: white;
+	  color: black;
 	  text-align: center;
 	  padding: 16px;
 	  text-decoration: none;
@@ -144,10 +144,10 @@ li a:hover{
         padding-top: 10px;
         padding-bottom: 10px;
         width: 80%;
-        background-color: black;
-        border-bottom: 1px solid white;
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+        background-color: white;
+        border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
 	display: flex;
 
 }
@@ -156,11 +156,11 @@ li a:hover{
         margin-left: 0;
         margin-right: 0;
         width: 75%;
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
         text-align: justify;
         float: left;
-	border-right: 1px solid white;
+	border-right: 1px solid black;
 
 }
 .body p{
@@ -173,8 +173,8 @@ li a:hover{
 	margin-left: 0;
         margin-right: 0;
         width: 25%;
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
         text-align: justify;
 	height: 100%;
 
@@ -190,11 +190,11 @@ li a:hover{
         margin-left: 10%;
         margin-right: 10%;
         width: 80%;
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
         text-align: justify;
         float: left;
-	border-top: 1px dashed white;
+	border-top: 1px dashed black;
 }
 .contact p {
         padding: 10px;
