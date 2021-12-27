@@ -58,6 +58,26 @@ h4{
     display: block;
 }
 
+.fileslist{
+    width: 60%;
+    text-align: left;
+    margin-left: 20%;
+    display: block;
+}
+
+.fileslist a{
+        text-decoration: none;
+        color: green;
+}
+.fileslist a:hover{
+    color: blue;
+}
+
+.fileslist li{
+    display: inline;
+    padding: 10px;
+}
+
 /* Style all font awesome icons */
 .fa {
  padding: 20px;
