@@ -85,6 +85,7 @@ h4{
  width: 50px;
  text-align: center;
  text-decoration: none;
+ border: 1px solid grey;
 }
 
 /* Add a hover effect if you want */
@@ -105,6 +106,7 @@ h4{
  background: black;
  color: white;
 }
+
 
 .fa-envelope-o {
     background-color: blue;
