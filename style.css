@@ -3,33 +3,39 @@ body {
         margin-right: 10%;
         width: 80%;
         background-color: white;
-	text-align: center;
-	border: 1px solid black;
+	    text-align: center;
+	    border: 1px solid black;
 }
 
-a{
+.projectlist a{
         text-decoration: none;
-        color: black;
+        color: green;
+}
+.projectlist a:hover{
+    color: blue;
 }
 
 h1{
-        font-size: 64px;
-        padding: 20px;
+    line-height: 10px;
+        font-size: 48px;
+        padding: 5px;
         color: black;
         font-family: "Times New Roman", Times, serif;
 }
 
 h2{
+    line-height: 10px;
         font-size: 32px;
-        padding: 10px;
+        padding: 5px;
         padding-left: 20px;
         color: black;
         font-family: "Times New Roman", Times, serif;
 }
 
 h4{
+    line-height: 10px;
         font-size: 16px;
-        padding: 10px;
+        padding: 5px;
         padding-left: 20px;
         color: black;
         font-family: "Times New Roman", Times, serif;
@@ -38,5 +44,51 @@ h4{
 .portrait{
         display: inline-block;
         float: center;
+
+}
+ ul{
+     list-style-type: none;
+ }
+
+.projectlist{
+    width: 60%;
+    text-align: left;
+    margin-left: 20%;
+    display: block;
+}
+
+/* Style all font awesome icons */
+.fa {
+ padding: 20px;
+ font-size: 30px;
+ width: 50px;
+ text-align: center;
+ text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+ opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+
+.fa-linkedin {
+ background: #3B5998;
+ color: white;
+}
+
+
+.fa-github {
+ background: black;
+ color: white;
+}
+
+.socials li{
+    display: inline;
+    padding: 0px;
+}
+.content{
 
 }
