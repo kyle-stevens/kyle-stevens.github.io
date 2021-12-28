@@ -126,6 +126,10 @@ img{
  color: white;
 }
 
+.fa-university{
+	background-color: red;
+	color: white;
+}
 
 .fa-envelope-o {
     background-color: blue;
@@ -135,7 +139,17 @@ img{
 .socials li{
     display: inline;
     padding: 0px;
+text-align: center;
+}
+
+.socials ul{
+	float: center;
+padding-left: 0;
 }
 .content{
 
+}
+.socials{
+	float: center;
+	text-align: center;
 }
