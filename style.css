@@ -50,6 +50,14 @@ h4{
 	width: auto\9;
 
 }
+
+img{
+	max-width: 100%;
+	height: auto;
+	width: auto\9;
+
+}
+
  ul{
      list-style-type: none;
  }
