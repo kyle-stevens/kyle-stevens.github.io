@@ -1,75 +1,385 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>kyle_stevens_website</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyle Stevens — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <body>
-        <div class="content">
-            <h1>Kyle Stevens</h1>
-            <h3>Software Engineer - Microchip Technology</h3>
-            <h3>Bachelor's of Science - Computer Science (Software Engineering) - 2021</h3>
-            <h3>Master's of Science - Computer Science (Cybersecurity) - 2022</h3>
-            <h4>(kylebstev@gmail.com)</h4>
-            <div class="portrait"><a href="index.html"><img src="images/personalPhoto.jpg" alt="cet"></a></div>
-            <br />
-            <div class="socials">
-                <ul style="display: inline; ">
-                    <li><a href="https://www.linkedin.com/in/kyle-b-stevens/" class="fa fa-linkedin" target="_blank"></a></li>
-                    <li><a href="https://github.com/kyle-stevens" class="fa fa-github" target="_blank"></a></li>
-                    <li><a href="mailto:kylebstev@gmail.com" class="fa fa-envelope-o" target="_blank"></a></li>
-                    <!-- <li><a href="#" class="fa fa-university" target=""></a></li> -->
-                </ul>
-            </div>
-            <br />
-            <div class="pages">
-                <ul style="display: inline; ">
-                    <li><a href="pages/about.html" target="_blank">ABOUT</a></li>
-                    <li><a href="pages/project.html" target="_blank">PROJECTS</a></li>
-                    <li><a href="pages/files.html" target="_blank">FILES</a></li>
-                    <!-- <li><a href="#" class="fa fa-university" target=""></a></li> -->
-                </ul>
-            </div>
-            <h3>About Me</h3>
-            <hr>
-            <p>I am an Arizona State University Alumni with a Master of Computer Science Degree in Computer Science(Cybersecurity) and a Bachelor of Science in Computer Science(Software Engineering). I participated in competitive underwater robotics with ASUR at ASU working as a developer(2018-2022), Software Lead(2020-2021), and Vice President(2021-2022). During this time I worked on developing I2C communication protocols, robot controls, and performed research into camera vision control guidance.</p>
-            <br />
-            <br />
-            <h3>Projects</h3>
-            <hr>
-            <div class="projectlist">
-                <ul>
-                    <li><a href="https://github.com/kyle-stevens/murder-mansion" target="_blank">Murder Mansion Mystery Game</a> - Rework of a project from CSCafe github community.(Under Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/dodge_blocks" target="_blank">Dodge Blocks</a> - Pygame program, using diagonal control scheme to dodge flying blocks.(Finished Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/SquareRain" target="_blank">Square Rain</a> - Pygame program, character must dodge falling blocks.(Finished Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/flappy_square" target="_blank">Flappy Square</a> - Pygame clone of Flappy Bird.(Finished Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/TaskTracker" target="_blank">Task Tracker</a> - JavaFX based program to track lists of tasks.(Finished Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/ROS-ARDUINO-I2C-COMMUNICATION" target="_blank">I2C Wire Protocol</a> - Linux based i2c communication of pwm motor values between an RPI/Nvidia Jetson and a Arduino/Equivalent Microcontroller.(Finished Development)</li>
-                    <li><br /></li>
-                    <li><a href="https://taskbargod.itch.io/parkit" target="_blank">ParkIt</a> - Godot based game about parking cars.</li>
-                    <li><br /></li>
-                    <li><a href="https://github.com/kyle-stevens/skyline_sort" target="_blank">Skyline Sort</a> - Python class implementation of the skyline operator for N sorting categories.</li>
-                    <li><br /></li>
-                    <li><a href="https://taskbargod.itch.io/" target="_blank">Itch.io</a> - Itch.io Library of Smaller Projects and Game Development</li>
-                <ul>
-            </div>
-            <br />
-            <h3>Files</h3>
-            <hr>
-            <div class="fileslist">
-                <ul>
-                    <li><a href="files/kyle_stevens.pdf" download="Kyle_Stevens_Resume.pdf" target="_blank">Resume</a></li>
-                    <li><a href="files/college_transcript.pdf" download="Kyle_Stevens_University_Transcript.pdf" target="_blank">University Transcript</a></li>
-                </ul>
-            </div>
+    :root {
+      --bg:           #ffffff;
+      --bg-subtle:    #fafafa;
+      --bg-muted:     #f4f4f5;
+      --border:       #e4e4e7;
+      --border-dark:  #d1d1d6;
+      --ink:          #09090b;
+      --ink-2:        #3f3f46;
+      --ink-3:        #71717a;
+      --ink-4:        #a1a1aa;
+      --accent:       #2563eb;
+      --sans:         'Geist', sans-serif;
+      --max:          1080px;
+      --gutter:       clamp(1.25rem, 4vw, 3.5rem);
+      --radius:       8px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--gutter); height: 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-size: 0.84rem; font-weight: 500; color: var(--ink-3); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-links a:hover { color: var(--ink); background: var(--bg-muted); }
+    .nav-cta { font-size: 0.84rem; font-weight: 500; color: var(--bg); background: var(--ink); text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 6px; transition: background 0.15s; }
+    .nav-cta:hover { background: var(--ink-2); }
+
+    .hero {
+      max-width: var(--max); margin: 0 auto;
+      padding: 7rem var(--gutter) 5rem;
+      display: grid; gap: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.78rem; font-weight: 500; color: var(--ink-3);
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem; border-radius: 100px; width: fit-content;
+      opacity: 0; animation: up 0.45s 0.05s forwards;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 2px rgba(34,197,94,0.2); }
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 600;
+      line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch;
+      opacity: 0; animation: up 0.5s 0.15s forwards;
+    }
+    .hero h1 em { font-style: normal; color: var(--ink-3); font-weight: 300; }
+    .hero-body {
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: end;
+      opacity: 0; animation: up 0.5s 0.25s forwards;
+    }
+    .hero-desc { font-size: 1.05rem; color: var(--ink-3); line-height: 1.7; max-width: 52ch; }
+    .hero-actions { display: flex; gap: 0.6rem; flex-shrink: 0; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--sans); font-size: 0.84rem; font-weight: 500;
+      text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--radius);
+      border: 1px solid transparent; transition: all 0.15s; white-space: nowrap;
+    }
+    .btn-solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn-solid:hover { background: var(--ink-2); }
+    .btn-ghost { background: var(--bg); color: var(--ink-2); border-color: var(--border-dark); }
+    .btn-ghost:hover { background: var(--bg-muted); }
+
+    .section { max-width: var(--max); margin: 0 auto; padding: 5rem var(--gutter); border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 2.5rem; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; margin-bottom: 1.25rem; }
+    .about-text h2 em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+    .about-text p { font-size: 0.95rem; color: var(--ink-3); line-height: 1.8; margin-bottom: 1rem; }
+    .about-text p strong { color: var(--ink); font-weight: 600; }
+    .skills-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.75rem; }
+    .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-chip { font-size: 0.78rem; font-weight: 500; color: var(--ink-2); background: var(--bg-subtle); border: 1px solid var(--border); padding: 0.3rem 0.7rem; border-radius: 6px; transition: border-color 0.15s, background 0.15s; }
+    .skill-chip:hover { border-color: var(--border-dark); background: var(--bg-muted); }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .project-card { background: var(--bg); padding: 1.75rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.15s; }
+    .project-card:hover { background: var(--bg-subtle); }
+    .project-card:hover .card-arrow { opacity: 1; transform: translate(0,0); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .card-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-muted); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .card-arrow { font-size: 0.9rem; color: var(--ink-4); opacity: 0; transform: translate(-3px, 3px); transition: opacity 0.15s, transform 0.15s; }
+    .card-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); letter-spacing: -0.01em; }
+    .card-desc { font-size: 0.84rem; color: var(--ink-3); line-height: 1.6; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; }
+    .card-tag { font-size: 0.7rem; font-weight: 500; color: var(--ink-3); background: var(--bg-muted); padding: 0.15rem 0.5rem; border-radius: 4px; }
+
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-dates { font-size: 0.78rem; color: var(--ink-4); margin-bottom: 0.25rem; }
+    .exp-company { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+    .exp-role { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; }
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .exp-points li { font-size: 0.87rem; color: var(--ink-3); padding-left: 1rem; position: relative; line-height: 1.6; }
+    .exp-points li::before { content: '·'; position: absolute; left: 0; color: var(--ink-4); font-weight: 700; }
+    .exp-points li strong { color: var(--ink); font-weight: 600; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 1rem; }
+    .contact-left h2 em { font-style: normal; color: var(--ink-3); font-weight: 400; }
+    .contact-left p { font-size: 0.95rem; color: var(--ink-3); line-height: 1.75; margin-bottom: 1.5rem; max-width: 44ch; }
+    .contact-links { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .contact-link { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; text-decoration: none; color: var(--ink-2); border-bottom: 1px solid var(--border); background: var(--bg); font-size: 0.88rem; transition: background 0.15s; gap: 1rem; }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link:hover { background: var(--bg-subtle); }
+    .contact-link-platform { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.1rem; }
+    .contact-link-value { font-weight: 500; color: var(--ink); }
+    .contact-link-icon { color: var(--ink-4); font-size: 0.85rem; flex-shrink: 0; }
+
+    footer { max-width: var(--max); margin: 0 auto; padding: 1.5rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    footer p { font-size: 0.78rem; color: var(--ink-4); }
+    footer a { color: var(--ink-3); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @keyframes up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.08s; }
+
+    @media (max-width: 860px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .hero-body { grid-template-columns: 1fr; gap: 1.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Kyle Stevens</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Software Engineer II · Gilbert, AZ
+    </div>
+    <h1>Kyle Stevens <em>— Software Engineer.</em></h1>
+    <div class="hero-body">
+      <p class="hero-desc">I build security-critical software at Microchip Technology — cryptographic provisioning, secure chip architecture, and systems that have to be correct, not just functional. ASU alumnus in CS, Software Engineering and Cybersecurity.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-solid">View work</a>
+        <a href="#contact" class="btn btn-ghost">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h2>Security-focused engineering, <em>built to last.</em></h2>
+        <p>I'm <strong>Kyle Stevens</strong>, a Software Engineer II at Microchip Technology in Chandler, AZ. I work within the Secure Chip Group on cryptographic provisioning and security-based microchip systems — software where correctness is non-negotiable.</p>
+        <p>I hold a <strong>B.S. in Computer Science</strong> (Software Engineering, GPA 3.69) and an <strong>M.S. in Computer Science</strong> (Cybersecurity, GPA 3.42) from Arizona State University's Ira A. Fulton School of Engineering.</p>
+        <p>I've also published technical writing on GeeksForGeeks covering Python database optimization with Psycopg2 and multiprocessing.</p>
+        <div style="margin-top: 1.5rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+          <a href="kyle_stevens.pdf" class="btn btn-ghost" download>Download résumé ↓</a>
+          <a href="https://www.linkedin.com/in/kyle-b-stevens/" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
         </div>
-    </body>
+      </div>
+      <div class="reveal delay-1">
+        <p class="skills-label">Stack &amp; Skills</p>
+        <div class="skills-wrap">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">C</span>
+          <span class="skill-chip">C++</span>
+          <span class="skill-chip">Java</span>
+          <span class="skill-chip">C#</span>
+          <span class="skill-chip">ASP.NET</span>
+          <span class="skill-chip">Bash</span>
+          <span class="skill-chip">Linux</span>
+          <span class="skill-chip">ROS</span>
+          <span class="skill-chip">Cryptography</span>
+          <span class="skill-chip">Cybersecurity</span>
+          <span class="skill-chip">Automated Testing</span>
+          <span class="skill-chip">Data Structures</span>
+          <span class="skill-chip">PostgreSQL</span>
+          <span class="skill-chip">Multiprocessing</span>
+          <span class="skill-chip">X86 Assembly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <p class="section-label reveal">Selected projects</p>
+    <div class="projects-grid reveal delay-1">
+
+      <a href="projects/skyline-sort.html" class="project-card">
+        <div class="card-top">
+          <div class="card-icon">◈</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-name">Multi-Category Skyline Sort</div>
+        <div class="card-desc">A Python class that computes the skyline of a dataset across N categories — useful for multi-dimensional dominance and ranking queries.</div>
+        <div class="card-tags">
+          <span class="card-tag">Python</span>
+          <span class="card-tag">Data Structures</span>
+          <span class="card-tag">Algorithms</span>
+        </div>
+      </a>
+
+      <a href="projects/windows-cleaner.html" class="project-card">
+        <div class="card-top">
+          <div class="card-icon">⚙</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-name">Python Windows System Cleaner</div>
+        <div class="card-desc">Automates cleanup of temp files, web cookies, caches, and other system clutter that accumulates on Windows machines over time.</div>
+        <div class="card-tags">
+          <span class="card-tag">Python</span>
+          <span class="card-tag">Windows</span>
+          <span class="card-tag">Automation</span>
+        </div>
+      </a>
+
+      <a href="projects/i2c-protocol.html" class="project-card">
+        <div class="card-top">
+          <div class="card-icon">⚡</div>
+          <span class="card-arrow">↗</span>
+        </div>
+        <div class="card-name">I2C Serial Communication Protocol</div>
+        <div class="card-desc">Custom I2C serial protocol for ASUR underwater robotics motor controls, with conversion of control values to serial-transferable strings.</div>
+        <div class="card-tags">
+          <span class="card-tag">C++</span>
+          <span class="card-tag">ROS</span>
+          <span class="card-tag">Embedded</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section" id="experience">
+    <p class="section-label reveal">Experience</p>
+    <div class="exp-list reveal delay-1">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-dates">Jun 2022 — Present</div>
+          <div class="exp-company">Microchip Technology</div>
+        </div>
+        <div>
+          <div class="exp-role">Software Engineer II — Secure Chip Group</div>
+          <ul class="exp-points">
+            <li>Develop software for cryptographic provisioning of security-based microchips in Chandler, AZ.</li>
+            <li>Work across embedded security architecture and chip-level software systems within the Secure Chip Group.</li>
+            <li>Collaborate closely with hardware and firmware engineering teams.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-dates">Aug 2020 — May 2021</div>
+          <div class="exp-company">ASUR Underwater Robotics, ASU</div>
+        </div>
+        <div>
+          <div class="exp-role">Software Lead / Vice President</div>
+          <ul class="exp-points">
+            <li>Designed high-level software architecture for autonomous and controlled underwater robotics systems.</li>
+            <li>Delegated R&D topics across the software team and coordinated development priorities.</li>
+            <li>Served as Vice President from May 2021, managing communication between club officers and the dev team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-dates">Jul 2020 — May 2022</div>
+          <div class="exp-company">Arizona State University</div>
+        </div>
+        <div>
+          <div class="exp-role">CS & Physics Tutor — Fulton Schools of Engineering</div>
+          <ul class="exp-points">
+            <li>Reinforced core CS concepts through discussion and focused topic review for undergraduate students.</li>
+            <li>Supported physics coursework as a Learning Assistant (Jan 2019 – Dec 2020).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-dates">2018 — 2022</div>
+          <div class="exp-company">Arizona State University</div>
+        </div>
+        <div>
+          <div class="exp-role">Education</div>
+          <ul class="exp-points">
+            <li><strong>M.S. Computer Science</strong> — Cybersecurity · May 2022 · GPA 3.42</li>
+            <li><strong>B.S. Computer Science</strong> — Software Engineering · May 2021 · GPA 3.69</li>
+            <li>Ira A. Fulton Schools of Engineering, Tempe AZ.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <h2>Let's work <em>together.</em></h2>
+        <p>Open to new opportunities, interesting security or systems problems, or just a good conversation. Reach out anytime.</p>
+        <a href="mailto:kylebstev@gmail.com" class="btn btn-solid">Send an email →</a>
+      </div>
+      <div class="contact-links reveal delay-1">
+        <a href="mailto:kylebstev@gmail.com" class="contact-link">
+          <div><div class="contact-link-platform">Email</div><div class="contact-link-value">kylebstev@gmail.com</div></div>
+          <span class="contact-link-icon">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/kyle-b-stevens/" target="_blank" class="contact-link">
+          <div><div class="contact-link-platform">LinkedIn</div><div class="contact-link-value">linkedin.com/in/kyle-b-stevens</div></div>
+          <span class="contact-link-icon">↗</span>
+        </a>
+        <a href="https://github.com/kyle-stevens" target="_blank" class="contact-link">
+          <div><div class="contact-link-platform">GitHub</div><div class="contact-link-value">github.com/kyle-stevens</div></div>
+          <span class="contact-link-icon">↗</span>
+        </a>
+        <a href="tel:+14802311047" class="contact-link">
+          <div><div class="contact-link-platform">Phone</div><div class="contact-link-value">+1 (480) 231.1047</div></div>
+          <span class="contact-link-icon">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Kyle Stevens</p>
+    <p>Gilbert, AZ · <a href="mailto:kylebstev@gmail.com">kylebstev@gmail.com</a></p>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.07 });
+    els.forEach(el => obs.observe(el));
+  </script>
+</body>
 </html>

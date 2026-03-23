@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Category Skyline Sort — Kyle Stevens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #fafafa; --bg-muted: #f4f4f5;
+      --border: #e4e4e7; --border-dark: #d1d1d6;
+      --ink: #09090b; --ink-2: #3f3f46; --ink-3: #71717a; --ink-4: #a1a1aa;
+      --accent: #2563eb; --sans: 'Geist', sans-serif;
+      --max: 760px; --gutter: clamp(1.25rem, 5vw, 3.5rem); --radius: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 var(--gutter); height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.84rem; font-weight: 500; color: var(--ink-3); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-back:hover { color: var(--ink); background: var(--bg-muted); }
+    .proj-header { max-width: var(--max); margin: 0 auto; padding: 4.5rem var(--gutter) 3.5rem; border-bottom: 1px solid var(--border); }
+    .proj-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--ink-4); margin-bottom: 2rem; }
+    .proj-breadcrumb a { color: var(--ink-4); text-decoration: none; }
+    .proj-breadcrumb a:hover { color: var(--ink-3); }
+    .proj-header h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem; }
+    .proj-header h1 em { font-style: normal; color: var(--ink-3); font-weight: 300; }
+    .proj-summary { font-size: 1.05rem; color: var(--ink-3); line-height: 1.75; max-width: 54ch; margin-bottom: 2rem; }
+    .proj-meta { display: flex; gap: 2rem; flex-wrap: wrap; padding: 1.25rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .meta-key { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); }
+    .meta-val { font-size: 0.88rem; font-weight: 500; color: var(--ink); }
+    .proj-links { display: flex; gap: 0.6rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--sans); font-size: 0.84rem; font-weight: 500; text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--radius); border: 1px solid transparent; transition: all 0.15s; }
+    .btn-solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn-solid:hover { background: var(--ink-2); }
+    .btn-ghost { background: var(--bg); color: var(--ink-2); border-color: var(--border-dark); }
+    .btn-ghost:hover { background: var(--bg-muted); }
+    .proj-diagram { max-width: var(--max); margin: 0 auto; padding: 2.5rem var(--gutter); border-bottom: 1px solid var(--border); background: var(--bg-subtle); }
+    .diagram-caption { font-size: 0.78rem; color: var(--ink-4); text-align: center; margin-top: 0.75rem; }
+    .proj-body { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) 6rem; }
+    .proj-section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    .proj-section:last-child { border-bottom: none; }
+    .proj-section-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .proj-section h2 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .proj-section p { font-size: 0.93rem; color: var(--ink-3); line-height: 1.85; margin-bottom: 0.9rem; max-width: 66ch; }
+    .proj-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+    .proj-section li { font-size: 0.9rem; color: var(--ink-3); padding-left: 1.1rem; position: relative; line-height: 1.7; }
+    .proj-section li::before { content: '·'; position: absolute; left: 0; color: var(--ink-4); font-weight: 700; }
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+    .tech-chip { font-size: 0.78rem; font-weight: 500; color: var(--ink-2); background: var(--bg-muted); border: 1px solid var(--border); padding: 0.3rem 0.7rem; border-radius: 6px; }
+    .more-projects { max-width: var(--max); margin: 0 auto; padding: 3rem var(--gutter) 4.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .more-link { text-decoration: none; color: inherit; }
+    .more-dir { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.3rem; }
+    .more-name { font-size: 0.95rem; font-weight: 600; color: var(--ink-3); transition: color 0.15s; }
+    .more-link:hover .more-name { color: var(--ink); }
+    .more-link.next { text-align: right; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Kyle Stevens</a>
+      <a href="../index.html#projects" class="nav-back">← All projects</a>
+    </div>
+  </nav>
+
+  <header class="proj-header">
+    <div class="proj-breadcrumb">
+      <a href="../index.html">Home</a><span>/</span>
+      <a href="../index.html#projects">Projects</a><span>/</span>
+      <span>Skyline Sort</span>
+    </div>
+    <h1>Multi-Category <em>Skyline Sort</em></h1>
+    <p class="proj-summary">A Python class that computes the skyline of a set of data objects across N categories — returning only the non-dominated objects in a multi-dimensional dataset.</p>
+    <div class="proj-meta">
+      <div class="meta-item"><span class="meta-key">Timeline</span><span class="meta-val">Jan – Feb 2024</span></div>
+      <div class="meta-item"><span class="meta-key">Type</span><span class="meta-val">Personal Project</span></div>
+      <div class="meta-item"><span class="meta-key">Status</span><span class="meta-val">Open Source</span></div>
+    </div>
+    <div class="proj-links">
+      <a href="https://github.com/kyle-stevens/skyline_sort" target="_blank" class="btn btn-solid">View on GitHub ↗</a>
+    </div>
+  </header>
+
+  <div class="proj-diagram">
+    <svg width="100%" viewBox="0 0 680 370" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <!-- Grid lines -->
+      <line x1="80" y1="250" x2="560" y2="250" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="80" y1="190" x2="560" y2="190" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="80" y1="130" x2="560" y2="130" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="80" y1="70"  x2="560" y2="70"  stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="170" y1="40" x2="170" y2="315" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="260" y1="40" x2="260" y2="315" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="350" y1="40" x2="350" y2="315" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="440" y1="40" x2="440" y2="315" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <line x1="530" y1="40" x2="530" y2="315" stroke="#e4e4e7" stroke-width="0.5" stroke-dasharray="4 4"/>
+      <!-- Axes -->
+      <line x1="80" y1="310" x2="562" y2="310" stroke="#d1d1d6" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="80" y1="310" x2="80"  y2="30"  stroke="#d1d1d6" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Tick labels -->
+      <text font-size="11" text-anchor="middle" x="170" y="328" font-family="Geist,sans-serif" fill="#a1a1aa">2</text>
+      <text font-size="11" text-anchor="middle" x="260" y="328" font-family="Geist,sans-serif" fill="#a1a1aa">4</text>
+      <text font-size="11" text-anchor="middle" x="350" y="328" font-family="Geist,sans-serif" fill="#a1a1aa">6</text>
+      <text font-size="11" text-anchor="middle" x="440" y="328" font-family="Geist,sans-serif" fill="#a1a1aa">8</text>
+      <text font-size="11" text-anchor="middle" x="530" y="328" font-family="Geist,sans-serif" fill="#a1a1aa">10</text>
+      <text font-size="11" text-anchor="end"    x="72"  y="254" font-family="Geist,sans-serif" fill="#a1a1aa">2</text>
+      <text font-size="11" text-anchor="end"    x="72"  y="194" font-family="Geist,sans-serif" fill="#a1a1aa">4</text>
+      <text font-size="11" text-anchor="end"    x="72"  y="134" font-family="Geist,sans-serif" fill="#a1a1aa">6</text>
+      <text font-size="11" text-anchor="end"    x="72"  y="74"  font-family="Geist,sans-serif" fill="#a1a1aa">8</text>
+      <!-- Axis titles -->
+      <text font-size="12" text-anchor="middle" x="325" y="350" font-family="Geist,sans-serif" fill="#71717a">Category 1 (higher = better)</text>
+      <text font-size="12" text-anchor="middle" x="22"  y="180" font-family="Geist,sans-serif" fill="#71717a" transform="rotate(-90 22 180)">Category 2 (higher = better)</text>
+      <!-- Skyline step boundary -->
+      <polyline points="125,70 125,130 215,130 215,190 305,190 305,250 530,250" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 3"/>
+      <!-- Dominated points -->
+      <circle cx="170" cy="250" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="215" cy="265" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="260" cy="235" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="295" cy="255" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="335" cy="268" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="395" cy="258" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="450" cy="272" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <circle cx="495" cy="260" r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <!-- Skyline points -->
+      <circle cx="125" cy="70"  r="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <circle cx="215" cy="130" r="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <circle cx="305" cy="190" r="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <circle cx="530" cy="250" r="9" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <!-- Point labels -->
+      <text font-size="13" font-weight="600" text-anchor="middle" x="125" y="55"  font-family="Geist,sans-serif" fill="#1d4ed8">A</text>
+      <text font-size="13" font-weight="600" text-anchor="middle" x="215" y="115" font-family="Geist,sans-serif" fill="#1d4ed8">B</text>
+      <text font-size="13" font-weight="600" text-anchor="middle" x="305" y="175" font-family="Geist,sans-serif" fill="#1d4ed8">C</text>
+      <text font-size="13" font-weight="600" text-anchor="middle" x="530" y="235" font-family="Geist,sans-serif" fill="#1d4ed8">D</text>
+      <text font-size="11" text-anchor="middle" x="370" y="233" font-family="Geist,sans-serif" fill="#a1a1aa">dominated</text>
+      <!-- Legend -->
+      <circle cx="596" cy="70"  r="7" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text font-size="11" x="610" y="74" font-family="Geist,sans-serif" fill="#71717a">Skyline point</text>
+      <circle cx="596" cy="96"  r="7" fill="#f4f4f5" stroke="#d1d1d6" stroke-width="1"/>
+      <text font-size="11" x="610" y="100" font-family="Geist,sans-serif" fill="#71717a">Dominated</text>
+      <line x1="589" y1="122" x2="605" y2="122" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3"/>
+      <text font-size="11" x="610" y="126" font-family="Geist,sans-serif" fill="#71717a">Boundary</text>
+    </svg>
+    <p class="diagram-caption">Points A, B, C, D form the skyline — no other point dominates them on both axes simultaneously. Gray points are all dominated.</p>
+  </div>
+
+  <main class="proj-body">
+    <section class="proj-section">
+      <p class="proj-section-tag">Background</p>
+      <h2>The problem</h2>
+      <p>In multi-dimensional datasets, standard sorting only works along a single axis. The skyline problem asks: which objects are not dominated by any other object across all N dimensions simultaneously?</p>
+      <p>This comes up in database query optimization and multi-criteria decision making — finding hotels that are neither too expensive nor too far away, without being beaten on both dimensions by another option.</p>
+    </section>
+    <section class="proj-section">
+      <p class="proj-section-tag">Solution</p>
+      <h2>What I built</h2>
+      <p>A self-contained Python class that accepts a dataset and N category dimensions, then returns the skyline — objects not dominated by any other object across all N categories.</p>
+      <ul>
+        <li>Supports arbitrary N-dimensional inputs, not limited to 2 categories.</li>
+        <li>Clean class interface, drop-in ready for any Python project.</li>
+        <li>No external dependencies — pure Python stdlib.</li>
+        <li>Returns skyline set with dominance metadata for downstream processing.</li>
+      </ul>
+    </section>
+    <section class="proj-section">
+      <p class="proj-section-tag">Engineering</p>
+      <h2>Technical decisions</h2>
+      <p>Object A dominates object B if A is at least as good as B on every category, and strictly better on at least one. The naive dominance check is O(n²·k) for n objects and k dimensions. The implementation prunes dominated candidates early to keep this tractable, and uses a clean class structure that separates the skyline computation from result formatting.</p>
+      <div class="tech-chips">
+        <span class="tech-chip">Python</span>
+        <span class="tech-chip">Data Structures</span>
+        <span class="tech-chip">Algorithms</span>
+      </div>
+    </section>
+    <section class="proj-section">
+      <p class="proj-section-tag">Results</p>
+      <h2>Outcome</h2>
+      <ul>
+        <li>Published as an open source library on GitHub.</li>
+        <li>Reusable across any multi-dimensional ranking or filtering use case.</li>
+        <li>A clean, readable reference implementation of the skyline algorithm in pure Python.</li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="more-projects">
+    <a href="windows-cleaner.html" class="more-link next" style="margin-left: auto;">
+      <div class="more-dir">Next →</div>
+      <div class="more-name">Python Windows System Cleaner</div>
+    </a>
+  </div>
+</body>
+</html>
