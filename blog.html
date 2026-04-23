@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1186766888022935"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Kyle Stevens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #ffffff;
+      --bg-subtle:    #fafafa;
+      --bg-muted:     #f4f4f5;
+      --border:       #e4e4e7;
+      --border-dark:  #d1d1d6;
+      --ink:          #09090b;
+      --ink-2:        #3f3f46;
+      --ink-3:        #71717a;
+      --ink-4:        #a1a1aa;
+      --accent:       #2563eb;
+      --sans:         'Geist', sans-serif;
+      --max:          1080px;
+      --gutter:       clamp(1.25rem, 4vw, 3.5rem);
+      --radius:       8px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-size: 0.84rem; font-weight: 500; color: var(--ink-3); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-links a:hover { color: var(--ink); background: var(--bg-muted); }
+    .nav-links a.active { color: var(--ink); }
+    .nav-cta { font-size: 0.84rem; font-weight: 500; color: var(--bg); background: var(--ink); text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 6px; transition: background 0.15s; }
+    .nav-cta:hover { background: var(--ink-2); }
+
+    .blog-header { max-width: var(--max); margin: 0 auto; padding: 5rem var(--gutter) 3.5rem; border-bottom: 1px solid var(--border); }
+    .blog-header-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 1rem; text-decoration: none; display: block; transition: color 0.15s; }
+    .blog-header-label:hover { color: var(--ink-3); }
+    .blog-header h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+    .blog-header-desc { font-size: 1rem; color: var(--ink-3); line-height: 1.7; max-width: 50ch; }
+
+    .blog-section { max-width: var(--max); margin: 0 auto; padding: 3rem var(--gutter) 5rem; }
+    .blog-search-wrap { margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .blog-search { font-family: var(--sans); font-size: 0.88rem; color: var(--ink); background: var(--bg); border: 1px solid var(--border-dark); border-radius: var(--radius); padding: 0.55rem 1rem; outline: none; transition: border-color 0.15s; width: 280px; }
+    .blog-search::placeholder { color: var(--ink-4); }
+    .blog-search:focus { border-color: var(--ink-3); }
+    .blog-count { font-size: 0.78rem; color: var(--ink-4); }
+
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .blog-card { background: var(--bg); padding: 1.75rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.6rem; transition: background 0.15s; }
+    .blog-card:hover { background: var(--bg-subtle); }
+    .blog-card:hover .blog-card-arrow { opacity: 1; transform: translate(0,0); }
+    .blog-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .blog-card-date { font-size: 0.75rem; color: var(--ink-4); font-weight: 500; }
+    .blog-card-arrow { font-size: 0.9rem; color: var(--ink-4); opacity: 0; transform: translate(-3px, 3px); transition: opacity 0.15s, transform 0.15s; }
+    .blog-card-title { font-size: 1rem; font-weight: 600; color: var(--ink); letter-spacing: -0.015em; line-height: 1.3; }
+    .blog-card-excerpt { font-size: 0.84rem; color: var(--ink-3); line-height: 1.65; flex: 1; }
+    .blog-card-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 0.25rem; }
+    .blog-card-tag { font-size: 0.7rem; font-weight: 500; color: var(--ink-3); background: var(--bg-muted); padding: 0.15rem 0.5rem; border-radius: 4px; }
+    .blog-empty { padding: 3rem; text-align: center; color: var(--ink-4); font-size: 0.88rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-subtle); }
+
+    footer { max-width: var(--max); margin: 0 auto; padding: 1.5rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+    footer p { font-size: 0.78rem; color: var(--ink-4); }
+    footer a { color: var(--ink-3); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 860px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Kyle Stevens</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <div class="blog-header">
+    <a href="blog.html" class="blog-header-label">Blog</a>
+    <h1>Writing</h1>
+    <p class="blog-header-desc">Notes on software engineering, systems, and security.</p>
+  </div>
+
+  <div class="blog-section">
+    <div class="blog-search-wrap">
+      <input type="search" class="blog-search" id="blogSearch" placeholder="Search posts…" autocomplete="off" />
+      <span class="blog-count" id="blogCount"></span>
+    </div>
+    <div id="blogGrid"></div>
+  </div>
+
+  <footer>
+    <p>© 2026 Kyle Stevens</p>
+    <p>Gilbert, AZ · <a href="mailto:kylebstev@gmail.com">kylebstev@gmail.com</a></p>
+  </footer>
+
+  <script>
+    const posts = [
+      {
+        title: "Optimizing PostgreSQL Queries in Python with Psycopg2",
+        date: "2025-11-10",
+        tags: ["Python", "PostgreSQL", "Performance"],
+        excerpt: "A look at connection pooling, batch inserts, and cursor reuse patterns that meaningfully reduce query overhead in Python applications backed by PostgreSQL.",
+        url: "posts/python-psycopg2-optimization.html"
+      },
+      {
+        title: "Building an I2C Protocol for Underwater Robotics",
+        date: "2025-09-22",
+        tags: ["C++", "ROS", "Embedded", "Robotics"],
+        excerpt: "How the ASUR robotics team implemented I2C serial communication for thruster motor control — covering the protocol structure, ROS integration, and edge cases in real-time serial I/O.",
+        url: "posts/i2c-underwater-robotics.html"
+      }
+    ];
+
+    function formatDate(iso) {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function renderPosts(list) {
+      const grid = document.getElementById('blogGrid');
+      const count = document.getElementById('blogCount');
+      count.textContent = list.length === posts.length
+        ? `${posts.length} post${posts.length !== 1 ? 's' : ''}`
+        : `${list.length} of ${posts.length}`;
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="blog-empty">No posts match your search.</div>';
+        return;
+      }
+      const sorted = [...list].sort((a, b) => new Date(b.date) - new Date(a.date));
+      grid.innerHTML = '<div class="blog-grid">' + sorted.map(p => `
+        <a href="${p.url}" class="blog-card">
+          <div class="blog-card-top">
+            <span class="blog-card-date">${formatDate(p.date)}</span>
+            <span class="blog-card-arrow">↗</span>
+          </div>
+          <div class="blog-card-title">${p.title}</div>
+          <div class="blog-card-excerpt">${p.excerpt}</div>
+          <div class="blog-card-tags">${p.tags.map(t => `<span class="blog-card-tag">${t}</span>`).join('')}</div>
+        </a>
+      `).join('') + '</div>';
+    }
+
+    document.getElementById('blogSearch').addEventListener('input', function() {
+      const q = this.value.toLowerCase().trim();
+      renderPosts(q ? posts.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.tags.some(t => t.toLowerCase().includes(q))
+      ) : posts);
+    });
+
+    renderPosts(posts);
+  </script>
+</body>
+</html>

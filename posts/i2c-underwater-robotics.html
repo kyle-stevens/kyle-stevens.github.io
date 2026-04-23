@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1186766888022935"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building an I2C Protocol for Underwater Robotics — Kyle Stevens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #fafafa; --bg-muted: #f4f4f5;
+      --border: #e4e4e7; --border-dark: #d1d1d6;
+      --ink: #09090b; --ink-2: #3f3f46; --ink-3: #71717a; --ink-4: #a1a1aa;
+      --accent: #2563eb;
+      --sans: 'Geist', sans-serif;
+      --mono: 'Geist Mono', monospace;
+      --max: 1080px; --gutter: clamp(1.25rem, 4vw, 3.5rem); --radius: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-back { font-size: 0.84rem; font-weight: 500; color: var(--ink-3); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-back:hover { color: var(--ink); background: var(--bg-muted); }
+
+    .post-header { max-width: 720px; margin: 0 auto; padding: 4rem var(--gutter) 2.5rem; border-bottom: 1px solid var(--border); }
+    .post-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-date { font-size: 0.78rem; color: var(--ink-4); font-weight: 500; margin-right: 0.5rem; }
+    .post-tag { font-size: 0.7rem; font-weight: 500; color: var(--ink-3); background: var(--bg-muted); padding: 0.15rem 0.5rem; border-radius: 4px; }
+    .post-title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+    .post-excerpt { font-size: 1rem; color: var(--ink-3); line-height: 1.7; max-width: 60ch; }
+
+    article { max-width: 720px; margin: 0 auto; padding: 3rem var(--gutter) 5rem; }
+    article h2 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin: 2.5rem 0 0.75rem; }
+    article h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 1.75rem 0 0.6rem; }
+    article p { font-size: 0.95rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.1rem; }
+    article ul, article ol { padding-left: 1.5rem; margin-bottom: 1.1rem; }
+    article li { font-size: 0.95rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 0.3rem; }
+    article code { font-family: var(--mono); font-size: 0.82rem; background: var(--bg-muted); border: 1px solid var(--border); color: var(--ink-2); padding: 0.1rem 0.35rem; border-radius: 4px; }
+    article pre { background: var(--bg-muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; overflow-x: auto; }
+    article pre code { background: none; border: none; padding: 0; font-size: 0.82rem; line-height: 1.7; color: var(--ink-2); }
+    article strong { color: var(--ink); font-weight: 600; }
+    article hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    footer { max-width: var(--max); margin: 0 auto; padding: 1.5rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+    footer p { font-size: 0.78rem; color: var(--ink-4); }
+    footer a { color: var(--ink-3); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Kyle Stevens</a>
+      <a href="../blog.html" class="nav-back">← Blog</a>
+    </div>
+  </nav>
+
+  <div class="post-header">
+    <div class="post-meta">
+      <span class="post-date">Sep 22, 2025</span>
+      <span class="post-tag">C++</span>
+      <span class="post-tag">ROS</span>
+      <span class="post-tag">Embedded</span>
+      <span class="post-tag">Robotics</span>
+    </div>
+    <h1 class="post-title">Building an I2C Protocol for Underwater Robotics</h1>
+    <p class="post-excerpt">How the ASUR robotics team implemented I2C serial communication for thruster motor control — covering the protocol structure, ROS integration, and edge cases in real-time serial I/O.</p>
+  </div>
+
+  <article>
+    <p>During my time as Software Lead for the ASUR Underwater Robotics team at ASU, one of the core challenges was getting reliable, low-latency communication between the ROS control layer and the thruster motor controllers. We ended up implementing a custom I2C serial protocol in C++ — here's how it came together and what we learned.</p>
+
+    <h2>Why I2C</h2>
+    <p>I2C (Inter-Integrated Circuit) is a two-wire serial protocol that supports multiple devices on the same bus, which made it a natural fit for our architecture. We had several thruster controllers that needed to receive commands from a single master controller, and I2C let us address each one individually without running separate wires to every device.</p>
+    <p>The tradeoff is that I2C is relatively slow compared to SPI, and bus contention has to be managed carefully. For motor control commands that don't require high-frequency updates, the bandwidth was more than sufficient.</p>
+
+    <h2>Protocol Structure</h2>
+    <p>Each motor command was encoded as a structured byte sequence: a device address byte, a command byte identifying the operation (set speed, stop, query status), and one or two data bytes carrying the value.</p>
+    <pre><code>// Command packet structure
+struct I2CCommand {
+    uint8_t address;   // device address (0x00–0x7F)
+    uint8_t command;   // command type
+    int16_t value;     // signed 16-bit value (-32768 to 32767)
+};
+
+std::string encodeCommand(const I2CCommand& cmd) {
+    std::string packet;
+    packet += static_cast<char>(cmd.address);
+    packet += static_cast<char>(cmd.command);
+    packet += static_cast<char>((cmd.value >> 8) & 0xFF);
+    packet += static_cast<char>(cmd.value & 0xFF);
+    return packet;
+}</code></pre>
+    <p>The motor speed values came in as floating-point ROS messages and needed to be mapped to the signed 16-bit range the controllers expected. We normalized inputs in the [-1.0, 1.0] range to [-32768, 32767] before encoding.</p>
+
+    <h2>ROS Integration</h2>
+    <p>The I2C node subscribed to a <code>geometry_msgs/Twist</code> topic for velocity commands and translated them into per-thruster values using a thruster allocation matrix. Each translated value was then encoded and written to the appropriate I2C device address.</p>
+    <pre><code>#include &lt;ros/ros.h&gt;
+#include &lt;geometry_msgs/Twist.h&gt;
+#include &lt;linux/i2c-dev.h&gt;
+#include &lt;fcntl.h&gt;
+
+void twistCallback(const geometry_msgs::Twist::ConstPtr& msg) {
+    // Allocate twist to individual thruster forces
+    float forces[NUM_THRUSTERS];
+    allocateThrusterForces(msg, forces);
+
+    for (int i = 0; i < NUM_THRUSTERS; ++i) {
+        I2CCommand cmd;
+        cmd.address = THRUSTER_ADDRS[i];
+        cmd.command = CMD_SET_SPEED;
+        cmd.value   = static_cast<int16_t>(forces[i] * 32767.0f);
+        writeI2C(encodeCommand(cmd));
+    }
+}</code></pre>
+
+    <h2>Edge Cases and Lessons Learned</h2>
+    <p>A few things bit us during testing that are worth flagging:</p>
+    <ul>
+      <li><strong>Bus lockup on NAK:</strong> If a device didn't acknowledge a transmission, the bus could hang. We added a watchdog that detected stalled I/O and issued a bus reset.</li>
+      <li><strong>Byte ordering matters:</strong> We initially had big-endian/little-endian mismatches between the ROS node and the motor controllers. Always be explicit about byte order and test with known values.</li>
+      <li><strong>Timing constraints:</strong> I2C writes are blocking in the Linux kernel driver. On a ROS callback thread, this could cause the node to miss its scheduling deadline. We moved I2C writes to a dedicated thread with a command queue.</li>
+    </ul>
+
+    <h2>Result</h2>
+    <p>The final implementation handled reliable thruster control across all axes with sub-10ms latency from ROS command to motor response. The dedicated I2C thread eliminated the scheduling issues, and the watchdog kept us from getting stuck during hardware faults.</p>
+    <p>If you're doing serial motor control in ROS, the main takeaways are: don't block on I/O in your callback threads, be explicit about data encoding at every boundary, and build recovery logic for bus errors from day one.</p>
+  </article>
+
+  <footer>
+    <p>© 2026 Kyle Stevens</p>
+    <p>Gilbert, AZ · <a href="mailto:kylebstev@gmail.com">kylebstev@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
