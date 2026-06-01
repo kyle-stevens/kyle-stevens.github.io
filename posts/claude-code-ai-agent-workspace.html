@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1186766888022935"
+     crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Personal AI Research &amp; Audio Pipeline with Claude Code — Kyle Stevens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-subtle: #fafafa; --bg-muted: #f4f4f5;
+      --border: #e4e4e7; --border-dark: #d1d1d6;
+      --ink: #09090b; --ink-2: #3f3f46; --ink-3: #71717a; --ink-4: #a1a1aa;
+      --accent: #2563eb;
+      --sans: 'Geist', sans-serif;
+      --mono: 'Geist Mono', monospace;
+      --max: 1080px; --gutter: clamp(1.25rem, 4vw, 3.5rem); --radius: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav-logo { font-size: 0.9rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-back { font-size: 0.84rem; font-weight: 500; color: var(--ink-3); text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
+    .nav-back:hover { color: var(--ink); background: var(--bg-muted); }
+
+    .post-header { max-width: 720px; margin: 0 auto; padding: 4rem var(--gutter) 2.5rem; border-bottom: 1px solid var(--border); }
+    .post-meta { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-date { font-size: 0.78rem; color: var(--ink-4); font-weight: 500; margin-right: 0.5rem; }
+    .post-tag { font-size: 0.7rem; font-weight: 500; color: var(--ink-3); background: var(--bg-muted); padding: 0.15rem 0.5rem; border-radius: 4px; }
+    .post-title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); margin-bottom: 1rem; }
+    .post-excerpt { font-size: 1rem; color: var(--ink-3); line-height: 1.7; max-width: 60ch; }
+
+    article { max-width: 720px; margin: 0 auto; padding: 3rem var(--gutter) 5rem; }
+    article h2 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); margin: 2.5rem 0 0.75rem; }
+    article h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 1.75rem 0 0.6rem; }
+    article p { font-size: 0.95rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1.1rem; }
+    article ul, article ol { padding-left: 1.5rem; margin-bottom: 1.1rem; }
+    article li { font-size: 0.95rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 0.3rem; }
+    article code { font-family: var(--mono); font-size: 0.82rem; background: var(--bg-muted); border: 1px solid var(--border); color: var(--ink-2); padding: 0.1rem 0.35rem; border-radius: 4px; }
+    article pre { background: var(--bg-muted); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; overflow-x: auto; }
+    article pre code { background: none; border: none; padding: 0; font-size: 0.82rem; line-height: 1.7; color: var(--ink-2); }
+    article strong { color: var(--ink); font-weight: 600; }
+    article hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+    footer { max-width: var(--max); margin: 0 auto; padding: 1.5rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid var(--border); }
+    footer p { font-size: 0.78rem; color: var(--ink-4); }
+    footer a { color: var(--ink-3); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Kyle Stevens</a>
+      <a href="../blog.html" class="nav-back">← Blog</a>
+    </div>
+  </nav>
+
+  <div class="post-header">
+    <div class="post-meta">
+      <span class="post-date">Jun 1, 2026</span>
+      <span class="post-tag">AI</span>
+      <span class="post-tag">Claude</span>
+      <span class="post-tag">Python</span>
+      <span class="post-tag">Automation</span>
+    </div>
+    <h1 class="post-title">Building a Personal AI Research &amp; Audio Pipeline with Claude Code</h1>
+    <p class="post-excerpt">How I built a structured workspace that takes a research topic all the way to a finished audio file — using Claude Code for research and synthesis, and a local neural TTS engine for offline voice generation.</p>
+  </div>
+
+  <article>
+    <p>Most AI-assisted workflows collapse at the edges: the model produces text, and then you're on your own to do something useful with it. I wanted a system where a topic goes in one end and a finished, publishable artifact comes out the other — consistently, repeatably, without manual stitching between steps.</p>
+    <p>The result is a small workspace I call the Claude Code AI Agent. It handles research, report synthesis, script generation, and audio rendering as a single connected pipeline. Here's how it works and why it's built the way it is.</p>
+
+    <h2>The Core Idea</h2>
+    <p>The workspace has three layers. First, plain-text workflow files that define the process in structured Markdown — essentially prompt engineering baked into repeatable instructions. Second, two lightweight Python scripts that handle the compute-heavy work (TTS rendering and model setup). Third, an output directory where finished reports, scripts, and audio files land with consistent naming.</p>
+    <p>Claude Code acts as the engine driving the workflow files. It reads the instructions, asks clarifying questions, conducts web research, synthesizes findings, and writes the output — all within a single session.</p>
+
+    <h2>Workflow Files as Reproducible Processes</h2>
+    <p>The key insight is treating AI workflows like code: version-controlled, parameterized, and repeatable. Instead of typing the same context-setting prompts from scratch each session, two Markdown files define the full process.</p>
+    <p><strong>research.md</strong> defines a phased methodology. When invoked, Claude asks clarifying questions first — scope, audience, depth, intended use case — before touching any sources. This single constraint eliminates the biggest failure mode in AI research: generating confident-sounding output that doesn't match what you actually needed.</p>
+    <p>After the clarifying phase, Claude conducts web searches across 8–10 sources and synthesizes findings into a structured report with a fixed template: summary, key findings, deep dive, content angles, takeaways, and sources. The template enforces consistency and makes outputs easy to scan or hand off.</p>
+    <p><strong>script-to-audio.md</strong> extends the research workflow by embedding a voice script directly inside the report. Spoken lines are marked with Markdown blockquote syntax (<code>&gt;</code>), while stage directions and on-screen notes use separate formatting. This lets the report and its audio script coexist in a single file without the spoken content polluting the written version — or vice versa.</p>
+
+    <h2>Offline TTS with Kokoro ONNX</h2>
+    <p>For audio generation, I chose <strong>Kokoro ONNX</strong> — an open-source neural text-to-speech engine that runs entirely offline. The <code>tts.py</code> script extracts blockquoted lines from a report, renders them through Kokoro, and saves the output as WAV or MP3 via FFmpeg.</p>
+    <pre><code>python tts.py output/2026-06-01-ai-agents-report.md</code></pre>
+    <p>Kokoro supports 10+ voices across American and British English, with male and female variants at different energy levels. The script picks the voice and speech rate based on a tone parameter embedded in the report header — so a technical deep-dive gets a different delivery than a conversational explainer.</p>
+    <p>The speech rate mapping was worth thinking through carefully:</p>
+    <ul>
+      <li><strong>Calm / explainer</strong>: 145 wpm — deliberate, easy to follow</li>
+      <li><strong>Conversational</strong>: 170 wpm — natural spoken pace</li>
+      <li><strong>Assertive / punchy</strong>: 195 wpm — energetic, suitable for opinionated content</li>
+    </ul>
+    <p>These aren't arbitrary numbers — they're derived from broadcast journalism research on comprehension vs. engagement tradeoffs. Matching voice delivery to content tone makes a real difference in how the output lands.</p>
+    <p>The offline-first choice was deliberate. Cloud TTS APIs introduce latency, cost per character, and data residency questions. For content that sometimes covers security topics, keeping synthesis local eliminates an entire category of concern.</p>
+
+    <h2>Model Setup and Dependencies</h2>
+    <p>Kokoro requires two ONNX model files (~300MB total) that aren't bundled with the package. The <code>download_models.py</code> script handles bootstrapping — pulling the files from GitHub releases and placing them in the expected directory. Running it once is all the setup needed.</p>
+    <pre><code>python download_models.py
+# Downloads kokoro-v1.0.onnx and voices-v1.0.bin to ./models/</code></pre>
+    <p>Runtime dependencies are minimal: <code>numpy</code>, <code>soundfile</code>, and <code>kokoro-onnx</code>. FFmpeg is optional and only needed for MP3 output.</p>
+
+    <h2>Output Naming and File Structure</h2>
+    <p>Every output file follows a <code>YYYY-MM-DD-topic-slug</code> naming convention. This means the output directory stays sortable, batch processing scripts can glob predictably, and there's never ambiguity about which version of a report corresponds to which audio file.</p>
+    <p>A completed research session produces three files:</p>
+    <ul>
+      <li><code>2026-06-01-ai-agents.md</code> — the full report with embedded script</li>
+      <li><code>2026-06-01-ai-agents.wav</code> — lossless audio from Kokoro</li>
+      <li><code>2026-06-01-ai-agents.mp3</code> — compressed version via FFmpeg</li>
+    </ul>
+
+    <h2>What Works Well</h2>
+    <p>The clarifying-questions-first constraint is the single highest-value piece of the design. It forces alignment before any work happens, which means the output almost always matches intent on the first pass. Without it, even well-prompted AI research tends to drift toward generic coverage.</p>
+    <p>Embedding scripts inside reports — rather than as separate files — keeps related assets together and makes the report the single source of truth. Editing the report automatically updates the script; there's no sync problem.</p>
+    <p>The local TTS stack is fast enough to be practical. A 1,500-word script renders in under 30 seconds on a mid-range CPU, which is well within the threshold where waiting becomes friction.</p>
+
+    <h2>What's Next</h2>
+    <p>The obvious extension is a watch mode that auto-renders audio whenever a report file changes — removing the manual invocation step entirely. Beyond that, a simple web UI for browsing the output directory would make the finished artifacts easier to review without touching the terminal.</p>
+    <p>For now, the pipeline does exactly what it was designed to do: take a topic and produce a publishable artifact without manual stitching. That's the constraint worth preserving as the system grows.</p>
+  </article>
+
+  <footer>
+    <p>© 2026 Kyle Stevens</p>
+    <p>Gilbert, AZ · <a href="mailto:kylebstev@gmail.com">kylebstev@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
